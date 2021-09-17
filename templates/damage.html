@@ -1,0 +1,135 @@
+{% extends 'bar.html' %}
+{% load static %}
+
+{% block script %}
+<script>
+  $(document).ready(function(){
+    $('#wc_table').DataTable();
+  });
+</script>
+<script>
+$(document).ready(function(){
+  $('#table-his3').DataTable();
+  if($("#position").val() != "manager"){
+        //console.log("6555")
+        $(".nav-item").each(function( index ) {
+            if($(this).find("a").html() == "HR"){
+                $(this).css("display","none");
+            }
+            console.log( $(this).find("a").html() );
+        });
+    }
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    change_position()
+});
+function change_position() {
+        console.log($("#position").val())
+        var position = $("#position").val()
+        if (position == "manager"){
+            $("#id_position").html("M")
+        }
+        else{
+            $("#id_position").html("E")
+        }
+    }
+</script>
+{% endblock script %}
+
+
+{% block content %}
+<input type="hidden" value="{{ position }}" id="position">
+<div style="margin-top: 20px; display:flex; justify-content:flex-start;">
+    <a class="btn" aria-current="page" a href="/management/" ><img src="{% static 'back.png' %}" align="left" width="30" height="30"></a>
+    <h1>Report Damaged and Missing</h1>
+</div><br>
+<div class="container">
+    <div class="row g-5">
+        <div class="col-5">
+        <table  id="wc_table" class="table table-dark table-striped">
+            <thead>
+                <tr align="center">
+                    <th scope="col">Area ID</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in areas_list %}
+                <tr align="center">
+                    <td>{{ item.area_id }}</td>
+                    <td>{{ item.amount_left }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div class="col-5">
+            <div class="col-8 ">
+                <u><b><h3>Detail</h3></b></u>
+                <form action="/cal_manage_damage/" method="POST">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label">Product ID</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" name="product_id" value={{ product_id_damage }} readonly={{ product_id_damage }}>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label  class="col-sm-4 col-form-label">Inspector ID</label>
+                            <div class="col-sm-8">
+                                <input type="text"  class="form-control form-control-sm" id="inspector_id" name="inspector_id" maxlength="4" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label  class="col-sm-4 col-form-label" >Date check</label>
+                            <div class="col-sm-8">
+                              <input  type="date" class="form-control form-control-sm" id="date_check" name="date_check" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label  class="col-sm-4 col-form-label">Time check</label>
+                            <div class="col-sm-8">
+                              <input  type="time" class="form-control form-control-sm" id="time_check" name="time_check" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label  class="col-sm-4 col-form-label">Area</label>
+                            <div class="col-sm-8">
+                              <input  type="text" class="form-control form-control-sm" name="area_id" maxlength="4" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label  class="col-sm-4 col-form-label">Amount</label>
+                            <div class="col-sm-8">
+                                  <input  type="number" class="form-control form-control-sm" name="amount_input" required min="1" max={{ amount_total }}>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" value="waste" id="status1"checked>
+                                    <label class="form-check-label" for="status1">Waste</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" value="missing" id="status2" >
+                                    <label class="form-check-label" for="status2">Missing</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-right: 25px; display:flex; justify-content:flex-end;">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

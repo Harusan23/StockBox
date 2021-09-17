@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DeliveryNote</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+        h1 {
+            font-size: 2.4em;
+            line-height: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        h3{
+            text-align: center;
+        }    
+        h4{
+            font-size: 16px;
+            text-align: center;
+        }  
+        
+      
+    </style>
+  </head>
+  <body>
+    <header >
+      <h1>StockBox Inventory Inc.</h1>
+      <hr>
+      {% for report in report_list %}
+      <h2>INVOICE #{{report.report_id}}</h2>
+      <hr>
+      <div>
+        <div>COMPANY {{report.recipient}}</div>
+        <div>ADDRESS {{report.address}}</div>
+        <div>PHONE {{report.phone}}</div>
+        <div>DATE {{report.date}}</div>
+      </div>
+      {%endfor%}
+    <hr>
+    </header>
+
+    <main>
+        <h3>Deliverable contents</h3>
+      <table width="100%" border="0.2" cellspacing="0.5" cellpadding="4">
+        <thead>
+          <tr>
+            <th>Product ID</th>   
+            <th>Description</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for report in report_list %}   
+            <tr>
+    
+                <td>
+                {% for report in report_list %}   
+                    {% for i in report.products_id %}     
+                        <div class='row'>{{ i }}</div>                       
+                    {%endfor%}
+                {%endfor%}
+                <br><br><br><br>       
+                </td>
+                <td>
+                {% for report in report_list %}   
+                    {% for i in report.products_name %}     
+                        <div class='row'>{{ i }}</div>                       
+                    {%endfor%}
+                {%endfor%}
+                <br><br><br><br>       
+                </td>
+                <td>
+                {% for report in report_list %}   
+                    {% for i in report.products_val %}     
+                        <div class='row'>{{ i }}</div>                       
+                    {%endfor%}
+                {%endfor%}
+                <br><br><br><br>           
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+      </table>
+    </main>
+    <br>
+    <hr>
+    <br>
+    <footer>
+        <table width="100%" border="0.2" cellspacing="0.5" cellpadding="2">
+            <thead>
+              <tr>
+                <th colspan="2"><h4>Sender</h4></th>  
+        
+                <th><h4>Recipient</h4></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h3>From:</h3></td>
+                    <td><h3>Approved by:</h3></td>
+                    <td><h3>Recived by:</h3></td>
+                </tr>
+              <tr>
+                <td>Name:<br>Date:<br>Signature:<br><br><br></td>
+                <td>Name:<br>Date:<br>Signature:<br><br><br></td>
+                <td>Name:<br>Date:<br>Signature:<br><br><br></td>
+              </tr>
+            </tbody>
+          </table>
+    </footer>
+  </body>
+</html>

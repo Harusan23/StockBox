@@ -1,0 +1,123 @@
+{% extends 'bar.html' %}
+
+{% block script %}
+<script>
+$(document).ready(function(){
+
+
+    var ctx = document.getElementById("chart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+		data: {
+		    labels: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
+		    datasets: 
+		            [{
+		                label: 'Item Recived',
+		                data: [100,50,300,400,60,700,420,150,50,10,652,70],
+		                backgroundColor: 'transparent',
+		                borderColor:'rgba(153,204,255)',
+		                borderWidth: 2
+		            },
+
+                    {
+		                label: 'Item Delived',
+		                data: [50,80,250,380,140,600,400,150,150,32,640,80],
+		                backgroundColor: 'transparent',
+		                borderColor:'rgba(255,153,204)',
+		                borderWidth: 2
+		            },
+
+                    {
+		                label: 'Item Fix',
+		                data: [2,0,5,0,1,1,0,0,4,3,10,0],
+		                backgroundColor: 'transparent',
+		                borderColor:'rgba(204,153,255)',
+		                borderWidth: 2
+		            },
+
+                    {
+		                label: 'Item Crash',
+		                data: [5,0,0,0,7,0,0,1,0,0,1,2],
+		                backgroundColor: 'transparent',
+		                borderColor:'rgba(255,204,153)',
+		                borderWidth: 2
+		            },
+                    ]
+		    },
+		     
+		options: {
+		        scales: {scales:{
+                    yAxes: [{
+                        ticks: {
+                            fontColor: 'rgba(255,255,255)',
+                            beginAtZero: false,
+                    }}], 
+                    xAxes: [{
+                        ticks: {
+                            fontColor: 'rgba(255,255,255)',
+                            autoskip: true, 
+                            maxTicketsLimit: 20,
+                    }}]}
+                },
+		        tooltips:{mode: 'index'},
+                title: {
+                        display: true,
+                        // font to bold
+                        fontStyle: 'bold',
+                        // put lineitem
+                        text: "Inventory activity in one year.",
+                        // set position
+                        position: "top",
+                        // font color                        
+                        fontColor: "rgb(255,255,255)",
+                        // fond size
+                        fontSize: 30
+
+                    },
+		        legend:{display: true, position: 'top', labels: {fontColor: 'rgb(255,255,255)', fontSize: 16},      
+            }
+		    }
+	});
+
+});
+</script>
+
+
+
+
+{% endblock script%}
+
+{% block content %}
+<h1>Inventory Summary</h1>
+
+<!-- Dropdown -->
+<form class="d-flex">
+	<!-- <div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  Dropdown button
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		  <li><a class="dropdown-item" href="#">Action</a></li>
+		  <li><a class="dropdown-item" href="#">Another action</a></li>
+		  <li><a class="dropdown-item" href="#">Something else here</a></li>
+		</ul>
+	  </div> -->
+	  <div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  Select Year
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		  <a class="dropdown-item" href="#">2020</a>
+		  <a class="dropdown-item" href="#">2019</a>
+		  <a class="dropdown-item" href="#">2018</a>
+		</div>
+	  </div>
+	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	<button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+
+
+<!--Chart  -->
+<canvas id="chart" style="width: 100%; height: 65vh; background: rgb(63, 63, 63); border: 1px solid #4e4e4e; margin-top: 10px;"></canvas>
+{% endblock content %}

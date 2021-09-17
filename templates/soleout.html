@@ -1,0 +1,81 @@
+{% extends 'bar.html' %}
+{% load static %}
+
+{% block script %}
+<script>
+  $(document).ready(function(){
+    $('#wc_table').DataTable();
+  });
+</script>
+<script>
+$(document).ready(function(){
+  $('#table-his3').DataTable();
+  if($("#position").val() != "manager"){
+        //console.log("6555")
+        $(".nav-item").each(function( index ) {
+            if($(this).find("a").html() == "HR"){
+                $(this).css("display","none");
+            }
+            console.log( $(this).find("a").html() );
+        });
+    }
+});
+</script>
+{% endblock script %}
+
+{% block content %}
+<input type="hidden" value="{{ position }}" id="position">
+    </p><h2 align="left">Take out the items</h2> </p>
+
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-sm-5">
+
+          <table id="wc_table" class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Product position</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in wc_list %}
+                <tr>
+                    <td>{{ item.area_id }}</td>
+                    <td>{{ item.amount_left }}</td>
+                    
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+        <div class="col ">
+        <form action="/soleoutmanage/" method="POST">
+            {% csrf_token %}
+            
+                Detail <br>
+                ID : {{info_id}}<br>
+                Name :  {{info_name}} <br>
+                size :  {{info_depth}}*{{info_heigth}}*{{info_length}}<br>
+                Price / Unit : {{info_price_unit}}<br><br>
+                Detail <br>
+                Location of products to be removed : <input  class="form-control form-control-sm" id="location_id"name="location_id"> <br>
+                Amount : <input  class="form-control form-control-sm" id="amount_out"name="amount_out"><br>
+    
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" a href="/soleoutmanage/">Cancel</button>
+                <button type="submit" class="btn btn-primary" da>Submit</button>
+              
+            </div>
+        </form>
+      </div>
+
+    </div>
+      
+      
+  </div>
+   
+
+{% endblock %}

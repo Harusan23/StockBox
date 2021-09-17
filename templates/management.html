@@ -1,0 +1,100 @@
+{% extends 'bar.html' %}
+
+{% load static %}
+
+{% block script %}
+<script>
+$(document).ready(function(){
+  $('#table-manage').DataTable();
+});
+</script>
+<script>
+$(document).ready(function(){
+  $('#table-his3').DataTable();
+  if($("#position").val() != "manager"){
+        //console.log("6555")
+        $(".nav-item").each(function( index ) {
+            if($(this).find("a").html() == "HR"){
+                $(this).css("display","none");
+            }
+            console.log( $(this).find("a").html() );
+        });
+    }
+});
+</script>
+{% endblock script%}
+
+{% block content %}
+<input type="hidden" value="{{ position }}" id="position">
+    </p><h1 align="left">Management</h1> </p>
+
+    <form class="row g-3">
+        <div class="col-sm-9" style="margin-bottom: 20px;">
+            <a class="btn btn-dark" aria-current="page" a href="/comingmanage/" >Import</a>
+            <a class="btn btn-dark" aria-current="page" a href="/soleoutmanage/" >Take out the product</a>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cargodamage">Damaged Product</button>
+
+        </div>
+    </form>
+
+    <div class="col">
+      <table id="table-manage" class="table table-dark table-striped">
+        <thead>
+          <tr align="center">
+            <th scope="col">Product ID</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Price/Unit</th>
+            <th scope="col">Weight/Unit(kg.)</th>
+              <th scope="col">Size(mm.)</th>
+            <th scope="col">Category</th>
+            <th scope="col">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products_list %}
+          <tr align="center">
+            {% with url="/product_ref/?product_id="|add:product.product_id %}
+              <th scope="row"><a a href="{{ url }}" class="stretched-link text-Info" style="position: relative;">{{ product.product_id }}</a></th>
+              <td>{{ product.product_name }}</td>
+              <td>{{ product.amount_total }}</td>
+              <td>{{ product.price_unit }}</td>
+              <td>{{ product.weight_unit }}</td>
+              <td>{{ product.size }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.note }}</td>
+            {% endwith %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+<form action="/damage/" method="POST">
+    {% csrf_token %}
+    <div class="modal fade" id="cargodamage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Enter the product code that you want to report damaged / defective products.</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="mb-2 row">
+                    <label  class="col-sm-3 col-form-label">Product ID</label>
+                    <div class="col-sm-9">
+                      <input  class="form-control form-control-sm" name="product_id_damage" maxlength="8" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

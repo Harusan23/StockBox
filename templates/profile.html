@@ -1,0 +1,37 @@
+{% extends 'bar.html' %}
+{% load static %}
+{% block content %}
+<!--    <div class="col-md-auto"><br><h1 align="center">Profile</h1 ></div><br>-->
+    <br><br><br>
+    <div class="row align-items-center">
+        <div class="col col-lg-4">
+            <img src="{% static pic_id %}" align="right" width="200" height="250">
+        </div>
+        <div class="col-md-auto" >
+            <h4 align="right">Name :</h4><br>
+            <h4 align="Right">ID :</h4><br>
+            <h4 align="Right">Position :</h4><br>
+            <h4 align="Right">E-mail :</h4><br>
+            <h4 align="Right">Phone Number :</h4>
+        </div>
+        <div class="col">
+            <h4 align="Left">{{ firstname }} {{ lastname }}</h4><br>
+            <h4 align="Left">{{ id }}</h4><br>
+            <h4 align="Left">{{ position }}</h4><br>
+            <h4 align="Left">{{ email }}</h4><br>
+            <h4 align="Left">{{ phone }}</h4>
+        </div>
+        <div style="margin-top: 10px" class="d-grid gap-2 d-md-flex justify-content-md-center">
+            {% with url="/profileedit/?id="|add:id%}
+              <a type="button" class="btn btn-primary" a href="{{ url }}">Edit</a>
+            {% endwith %}
+            <a type="button" class="btn btn-primary" a href="/HR/">Back</a>
+            {% if id != user_check %}
+                {% with url_remove="/remove_user/?id="|add:id%}
+                <a type="button" class="btn btn-primary" a href="{{ url_remove }}">Remove</a>
+                {% endwith %}
+            {% endif %}
+        </div>
+    </div><br>
+
+{% endblock %}

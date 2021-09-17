@@ -1,0 +1,109 @@
+{% extends 'bar.html' %}
+{% load static %}
+{% block script %}
+<script>
+$(document).ready(function(){
+  $('#table-manage').DataTable();
+});
+</script>
+<script>
+$(document).ready(function(){
+  $('#table-his3').DataTable();
+  if($("#position").val() != "manager"){
+        //console.log("6555")
+        $(".nav-item").each(function( index ) {
+            if($(this).find("a").html() == "HR"){
+                $(this).css("display","none");
+            }
+            console.log( $(this).find("a").html() );
+        });
+    }
+});
+</script>
+{% endblock script%}
+
+{% block content %}
+<input type="hidden" value="{{ position }}" id="position">
+    </p><h2 align="left">Select the damaged item</h2> </p>
+
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">1</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">2</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">3</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">4</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">5</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">6</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <p class="fs-5 me-5">7</p>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+        <a class="btn btn-secondary btn-lg me-5" aria-current="page" a href="http://127.0.0.1:8000/management/">&emsp;&emsp;</a>
+    </div>
+
+
+{% endblock %}

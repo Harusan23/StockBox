@@ -1,0 +1,73 @@
+{% extends 'bar.html' %}
+
+{% block script%}
+<script>
+    $(document).ready(function(){
+    });
+    function change_position(){
+        // console.log($("#position").val())
+        // var position = db.collection('users')
+    }
+</script>
+{% endblock script%}
+
+{% block content %}
+    <br><h2 align="center">Edit</h2><br>
+    <form action="/editnow/" class="row g-3" method="POST">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label" >Firstname</label>
+                <input type="text" class="form-control" name="firstname" value= {{ firstname }}>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Lastname</label>
+                <input type="text" class="form-control" name="lastname" value= {{ lastname }}>
+            </div>
+        </div>
+        <div class="col-8">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" value= {{ email }}>
+        </div>
+        <div class="col-5">
+            <label class="form-label">Phone number</label>
+            <input type="text" class="form-control" name="phone" value= {{ phone }}>
+        </div>
+        <div class="col-8">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" value= {{ password }}>
+        </div>
+        <div style="margin-TOP: 15px;" class="row">
+            <div class="col-2">
+                <label class="form-label">Position</label>
+                {% if position == "manager" %}
+                    <select onchange="change_position()"  name="position" class="form-control">
+                        <option value="manager">Manager</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                {% endif %}
+                {% if position == "employee" %}
+                    <select onchange="change_position()"  name="position" class="form-control">
+                        <option value="employee">Employee</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                {% endif %}
+            </div>
+            <div class="col-3" >
+                <label class="form-label">เลือกรูปภาพ</label>
+                <input type="file" class="form-control" id="add_photo" name= "add_photo" >
+            </div>
+            <div class="col-2">
+<!--                <fieldset disabled>-->
+                        <label class="form-label">ID</label>
+                        <input type="text" class="form-control" name="id" value= {{ id }} readonly={{ id }}>
+<!--                </fieldset>-->
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a type="button" class="btn btn-primary" a href="/HR/">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

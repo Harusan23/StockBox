@@ -1,0 +1,65 @@
+{% extends 'bar.html' %}
+{% load static %}
+
+{% block script %}
+<script>
+$(document).ready(function(){
+  $('#table-his1').DataTable();
+});
+</script>
+<script>
+$(document).ready(function(){
+  $('#table-his3').DataTable();
+  if($("#position").val() != "manager"){
+        //console.log("6555")
+        $(".nav-item").each(function( index ) {
+            if($(this).find("a").html() == "HR"){
+                $(this).css("display","none");
+            }
+            console.log( $(this).find("a").html() );
+        });
+    }
+});
+</script>
+
+{% endblock script%}
+
+{% block content %}
+<input type="hidden" value="{{ position }}" id="position">
+    <div class="col-md-auto"><h1 align="center">History</h1></div>
+    <div style="margin-bottom:9px;" class="btn-group">
+        <a type="button" class="btn btn-secondary active" a href="/history/">Movement list</a>
+        <a type="button" class="btn btn-secondary" a href="/history2/">Summary</a>
+        <a type="button" class="btn btn-secondary" a href="/history3/">Delivery note</a>
+    </div>
+    <br>
+    <table id="table-his1" class="table table-dark table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Product ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Activity</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Area</th>
+          <th scope="col">Recorder</th>
+          <th scope="col">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for history in history_list %}
+        <tr>
+          <td>{{ history.date }}</td>
+          <td>{{ history.product_id }}</td>
+          <td>{{ history.name }}</td>
+          <td>{{ history.status }}</td>
+          <td>{{ history.amount }}</td>
+          <td>{{ history.area }}</td>
+          <td>{{ history.user_id }}</td>
+          <td>{{ history.note }}</td>        
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+
+{% endblock %}

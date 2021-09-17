@@ -1,0 +1,68 @@
+{% extends 'bar.html' %}
+
+{% block script %}
+<script>
+$(document).ready(function(){
+    change_position()
+});
+function change_position() {
+        console.log($("#position").val())
+        var position = $("#position").val()
+        if (position == "manager"){
+            $("#id_position").html("M")
+        }
+        else{
+            $("#id_position").html("E")
+        }
+    }
+</script>
+{% endblock script%}
+
+{% block content %}
+    <br>
+        <h2 align="center">Register</h2>
+    <br>
+    <form action="/signinagain/" class="row g-3" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Firstname</label>
+                <input type="text" class="form-control" name="firstname">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Lastname</label>
+                <input type="text" class="form-control" name="lastname">
+            </div>
+        </div>
+        <div class="col-8">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+        <div class="col-5">
+            <label class="form-label">Phone number</label>
+            <input type="text" class="form-control" name="phone">
+        </div>
+        <div class="col-8">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <div style="margin-TOP: 15px;" class="row">
+            <div class="col-2">
+                <label class="form-label">Position</label>
+                <select onchange="change_position()" id="position" name="position" class="form-control">
+                    <option value="manager">Manager</option>
+                    <option value="employee">Employee</option>
+                </select>
+            </div>
+            <div class="col-3" >
+                <label class="form-label">เลือกรูปภาพ</label>
+                <input type="file" class="form-control" id="inputGroupFile02">
+            </div>
+
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign up</button>
+            <a type="button" class="btn btn-primary" a href="/HR/">Cancle</a>
+        </div>
+    </form>
+{% endblock %}
